@@ -1,22 +1,27 @@
--- Codeby Remote Loader
--- Version: Loader_v1
--- Author: Codeby
+-- Loader Lua para Codeby Elite Builder
+-- By: TuLoader
 
-local SCRIPT_URL = "https://pastefy.app/WVFeEftk"
+-- URL del script en Pastefy
+local SCRIPT_URL = "https://pastefy.app/WVFeEftk/raw"
 
-local success, response = pcall(function()
-    return game:HttpGet(SCRIPT_URL)
-end)
+-- Función para cargar y ejecutar el script remoto
+local function loadRemoteScript(url)
+    local httpService = game:GetService("HttpService")
+    local success, result = pcall(function()
+        return game:HttpGet(url)
+    end)
 
-if not success or not response or #response < 10 then
-    warn("❌ Codeby Loader: Error al descargar el script")
-    return
+    if success and result then
+        local func, err = loadstring(result)
+        if func then
+            func()
+        else
+            warn("Error al convertir el script a función: " .. tostring(err))
+        end
+    else
+        warn("Error al obtener el script remoto: " .. tostring(result))
+    end
 end
 
-local run, err = loadstring(response)
-if not run then
-    warn("❌ Codeby Loader: Error al ejecutar ->", err)
-    return
-end
-
-run()
+-- Ejecutar el script remoto
+loadRemoteScript(SCRIPT_URL)
