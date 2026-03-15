@@ -2,7 +2,7 @@
 -- By: TuLoader
 
 -- URL del script en Pastefy
-local SCRIPT_URL = "https://pastefy.app/tDPnbSVP/raw"
+local SCRIPT_URL = "https://raw.githubusercontent.com/yupiliano740-sys/COPYJOUSE/refs/heads/main/Copyjouse"
 
 -- Función para cargar y ejecutar el script remoto
 local function loadRemoteScript(url)
